@@ -5,7 +5,7 @@ on:
 
 jobs:
   create-tag:
-    name: Release notes
+    name: Create tag for commit
     runs-on: ubuntu-22.04
     permissions: write-all
     steps:      
@@ -15,4 +15,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh release create commit-${{ github.sha }}
+          gh release create "commit-$GITHUB_SHA"
