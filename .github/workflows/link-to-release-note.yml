@@ -18,7 +18,6 @@ jobs:
       - name: Create release note
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
         run: |
           gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/reindert-vetter/merge-demo/releases/tag/pr-${{ github.event.pull_request.number }}
           

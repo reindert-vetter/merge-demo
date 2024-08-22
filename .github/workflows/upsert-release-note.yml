@@ -17,7 +17,6 @@ jobs:
       - name: Upsert release note
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
         run: |
           (gh release delete pr-${{ github.event.pull_request.number }} --yes --cleanup-tag || echo "ignore ^") &&\
           gh release create pr-${{ github.event.pull_request.number }} \
