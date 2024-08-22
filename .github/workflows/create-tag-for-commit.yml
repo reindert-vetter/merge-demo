@@ -15,4 +15,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh release create "commit-$GITHUB_SHA"
+          gh release create "commit-${{ github.head_ref }}.${{ github.sha }}"
