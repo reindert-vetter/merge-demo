@@ -8,13 +8,6 @@ jobs:
     name: Release notes
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Ensure tag in target branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git fetch &&\
-          git tag $(git rev-parse --short ${{ github.event.pull_request.base.ref }}) && git push origin $(git rev-parse --short ${{ github.event.pull_request.base.ref }})
       - name: Create release note
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
