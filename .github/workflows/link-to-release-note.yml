@@ -15,4 +15,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh issue edit ${{ github.event.pull_request.number }} --body "firs $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"
+          gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/reindert-vetter/merge-demo/releases/tag/pr-${{ github.event.pull_request.number }}
+          
+          $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"
