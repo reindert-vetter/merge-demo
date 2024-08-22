@@ -1,14 +1,26 @@
 name: Create release
 
 on:
-  push:
-    tags:
-      - '*'
+  pull_request:
+    types: [opened, reopened, synchronize]
 jobs:
-  github-example-tags:
-    runs-on: ubuntu-latest
+  release:
+    name: Release notes
+    runs-on: ubuntu-22.04
     steps:
-     - name: GitHub Tag Name example
-       run: |
-         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+      - name: Ensure tag in target branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git checkout ${{ github.event.pull_request.base.ref }} && git tag $(git rev-parse --short HEAD) && git push origin $(git rev-parse --short HEAD)
+      - name: Create release note
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          (gh release delete pr-${{ github.event.pull_request.id }} --yes --cleanup-tag || echo "ignore ^") \
+          && gh release create pr-${{ github.event.pull_request.id }} \
+            --target="${{ github.event.pull_request.head.ref }}" \
+            --generate-notes \
+            --notes-start-tag=$(git rev-parse --short main) \
+            --latest=false
