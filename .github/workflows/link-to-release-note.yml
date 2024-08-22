@@ -1,0 +1,18 @@
+name: Create release
+
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  release:
+    name: Release notes
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    steps:      
+      - uses: actions/checkout@v3
+      - name: Create release note
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh issue edit 9 --body "firs $(gh issue view 9 --json body | jq -r '.body')"
