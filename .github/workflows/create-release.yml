@@ -15,7 +15,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          echo $(git rev-parse --short ${{ github.event.pull_request.base.ref }}} &&\
+          echo "::{github.event.pull_request.base.ref} {$(git rev-parse --short ${{ github.event.pull_request.base.ref }})}" &&\
           (gh release delete pr-${{ github.event.pull_request.id }} --yes --cleanup-tag || echo "ignore ^") &&\
           gh release create pr-${{ github.event.pull_request.id }} \
             --target="${{ github.event.pull_request.head.ref }}" \
