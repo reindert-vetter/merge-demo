@@ -17,7 +17,7 @@ jobs:
         run: |
           (gh release delete pr-${{ github.event.pull_request.id }} --yes --cleanup-tag || echo "ignore ^") &&\
           gh release create pr-${{ github.event.pull_request.id }} \
-            --target="commit-${{ github.event.pull_request.head.ref }}" \
+            --target="${{ github.event.pull_request.head.ref }}" \
             --generate-notes \
-            --notes-start-tag=${{ github.event.pull_request.base.sha }} \
+            --notes-start-tag=commit-${{ github.event.pull_request.base.sha }} \
             --latest=false
