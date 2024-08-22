@@ -8,7 +8,6 @@ jobs:
   create-tag:
     name: Create tag for commit
     runs-on: ubuntu-22.04
-    permissions: write-all
     steps:      
       - uses: actions/checkout@v3
       - name: Create tag for commit
