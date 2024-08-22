@@ -1,0 +1,20 @@
+name: Link to release note
+
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  release:
+    name: Link to release note
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    steps:      
+      - uses: actions/checkout@v3
+      - name: Create release note
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/reindert-vetter/merge-demo/releases/tag/pr-${{ github.event.pull_request.number }}
+          
+          $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"

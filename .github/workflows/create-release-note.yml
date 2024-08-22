@@ -1,0 +1,23 @@
+name: Create release note
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  release:
+    name: Release notes
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    steps:      
+      - uses: actions/checkout@v3
+      - name: Create release note
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          (gh release delete pr-${{ github.event.pull_request.number }} --yes --cleanup-tag || echo "ignore ^") &&\
+          gh release create pr-${{ github.event.pull_request.number }} \
+            --target="${{ github.event.pull_request.head.ref }}" \
+            --generate-notes \
+            --notes-start-tag=commit-${{ github.event.pull_request.base.sha }} \
+            --latest=false

@@ -1,0 +1,18 @@
+name: Create tag for commit
+
+on:
+  push:
+
+jobs:
+  create-tag:
+    name: Create tag for commit
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    steps:      
+      - uses: actions/checkout@v3
+      - name: Create tag for commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "commit-${{ github.sha }}" --latest=false
