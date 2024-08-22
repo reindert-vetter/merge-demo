@@ -5,7 +5,7 @@ on:
     types: [opened]
 jobs:
   release:
-    name: Release notes
+    name: Link to release note
     runs-on: ubuntu-22.04
     permissions: write-all
     steps:      
