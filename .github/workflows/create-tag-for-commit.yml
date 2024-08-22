@@ -11,8 +11,6 @@ jobs:
     permissions:
       actions: write
       attestations: write
-      checks: write
-      contents: write
     steps:      
       - uses: actions/checkout@v3
       - name: Create tag for commit
