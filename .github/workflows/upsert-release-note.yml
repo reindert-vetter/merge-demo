@@ -1,16 +1,17 @@
-name: Create release note
+name: Upsert release note
+# Generate a release note. For example: https://github.com/plug-and-pay/plug-and-pay/releases/tag/pr-4970
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
   release:
-    name: Release notes
+    name: Upsert release note
     runs-on: ubuntu-22.04
     permissions: write-all
     steps:      
       - uses: actions/checkout@v3
-      - name: Create release note
+      - name: Upsert release note
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}

@@ -1,4 +1,6 @@
 name: Link to release note
+# We want to have a link in every pr to the generated
+# release note (created in `create-release-note.tml`)
 
 on:
   pull_request:
@@ -18,3 +20,5 @@ jobs:
           gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/reindert-vetter/merge-demo/releases/tag/pr-${{ github.event.pull_request.number }}
           
           $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"
+
+# The extra white space above is intentional.

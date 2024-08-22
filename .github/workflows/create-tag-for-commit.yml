@@ -1,8 +1,9 @@
 name: Create tag for commit
+# We can only automatically generate release notes (in `create-release-note.yml) between
+# the last commit and an existing tag. So we create a tag for each commit so we can see the difference.
 
 on:
   push:
-
 jobs:
   create-tag:
     name: Create tag for commit
