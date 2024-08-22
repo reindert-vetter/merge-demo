@@ -9,7 +9,13 @@ jobs:
     name: Create tag for commit
     runs-on: ubuntu-22.04
     permissions:
-      pull-requests: write
+      actions: write
+      attestations: write
+      checks: write
+      contents: write
+      deployments: write
+      id-token: write
+      issues: write
     steps:      
       - uses: actions/checkout@v3
       - name: Create tag for commit
