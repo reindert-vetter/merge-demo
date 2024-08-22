@@ -18,5 +18,5 @@ jobs:
           gh release create pr-${{ github.event.pull_request.id }} \
             --target="${{ github.event.pull_request.head.ref }}" \
             --generate-notes \
-            --notes-start-tag=$(git rev-parse --short main) \
+            --notes-start-tag=main \
             --latest=false
