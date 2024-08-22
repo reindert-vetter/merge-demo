@@ -15,8 +15,5 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Create tag for commit
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
         run: |
           gh release create "commit-${{ github.sha }}" --latest=false
