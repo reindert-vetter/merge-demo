@@ -15,4 +15,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh issue edit 9 --body "firs $(gh issue view ${{ github.event.pull_request.head.ref }} --json body | jq -r '.body')"
+          gh issue edit ${{ github.event.pull_request.number }} --body "firs $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"
