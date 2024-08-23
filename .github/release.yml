@@ -1,0 +1,8 @@
+changelog:
+  categories:
+    - title: DB Migrations
+      labels:
+        - Migration
+    - title: All
+      labels:
+        - '*'
