@@ -13,7 +13,6 @@ jobs:
   release:
     name: Append label release note
     runs-on: ubuntu-22.04
-    if: github.event.pull_request.head.ref == 'develop' || github.event.pull_request.head.ref == 'release' || github.event.pull_request.head.ref == 'uat'
     steps:
       - uses: actions/checkout@v3
         with:
