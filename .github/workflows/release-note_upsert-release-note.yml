@@ -2,17 +2,13 @@ name: Upsert release note
 # Generate a release note. For example: https://github.com/plug-and-pay/plug-and-pay/releases/tag/pr-4970
 
 on:
-  push:
-    branches:
-      - develop
-      - release
-      - uat
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
   release:
     name: Upsert release note
     runs-on: ubuntu-22.04
+    if: contains(fromJson('["refs/heads/develop", "refs/heads/release", "refs/heads/uat"]'), github.ref)
     steps:
       - uses: actions/checkout@v3
         with:

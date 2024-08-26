@@ -3,17 +3,13 @@ name: Link to release note
 # release note (created in `create-release-note.tml`)
 
 on:
-  push:
-    branches:
-      - develop
-      - release
-      - uat
   pull_request:
     types: [opened]
 jobs:
   release:
     name: Link to release note
     runs-on: ubuntu-22.04
+    if: contains(fromJson('["refs/heads/develop", "refs/heads/release", "refs/heads/uat"]'), github.ref)
     steps:
       - uses: actions/checkout@v3
         with:
