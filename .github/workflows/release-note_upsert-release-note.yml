@@ -3,15 +3,12 @@ name: Upsert release note
 
 on:
   pull_request:
-    branches:
-      - develop
-      - release
-      - uat
     types: [opened, reopened, synchronize]
 jobs:
   release:
     name: Upsert release note
     runs-on: ubuntu-22.04
+    if: contains(github.head_ref, 'develop') || contains(github.head_ref, 'release') || contains(github.head_ref, 'uat')
     steps:
       - uses: actions/checkout@v3
         with:

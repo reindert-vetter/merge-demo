@@ -4,15 +4,12 @@ name: Link to release note
 
 on:
   pull_request:
-    branches:
-      - develop
-      - release
-      - uat
     types: [opened]
 jobs:
   release:
     name: Link to release note
     runs-on: ubuntu-22.04
+    if: contains(github.head_ref, 'develop') || contains(github.head_ref, 'release') || contains(github.head_ref, 'uat')
     steps:
       - uses: actions/checkout@v3
         with:
