@@ -3,22 +3,22 @@ name: Upsert release note
 
 on:
   pull_request:
+    branches:
+      - develop
     types: [opened, reopened, synchronize]
 jobs:
   release:
     name: Upsert release note
     runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    steps:      
+    steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: '0'
       - name: Upsert release note
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          (gh release delete pr-${{ github.event.pull_request.number }} --yes --cleanup-tag || echo "ignore ^") &&\
+          gh release delete pr-${{ github.event.pull_request.number }} --yes --cleanup-tag || true
           gh release create pr-${{ github.event.pull_request.number }} \
             --target="${{ github.event.pull_request.head.ref }}" \
             --generate-notes \

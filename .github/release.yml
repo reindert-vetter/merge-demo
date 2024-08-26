@@ -1,8 +1,5 @@
 changelog:
   categories:
-    - title: DB Migrations
+    - title: Pull requests to develop
       labels:
-        - Migration
-    - title: All
-      labels:
-        - '*'
+        - In release note

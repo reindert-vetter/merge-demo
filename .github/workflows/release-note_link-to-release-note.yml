@@ -4,22 +4,22 @@ name: Link to release note
 
 on:
   pull_request:
+    branches:
+      - develop
     types: [opened]
 jobs:
   release:
     name: Link to release note
     runs-on: ubuntu-22.04
-    permissions:
-      pull-requests: write
-    steps:      
+    steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: '0'
       - name: Create release note
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/reindert-vetter/merge-demo/releases/tag/pr-${{ github.event.pull_request.number }}
+          gh issue edit ${{ github.event.pull_request.number }} --body "https://github.com/plug-and-pay/plug-and-pay/releases/tag/pr-${{ github.event.pull_request.number }}
           
           $(gh issue view ${{ github.event.pull_request.number }} --json body | jq -r '.body')"
 
