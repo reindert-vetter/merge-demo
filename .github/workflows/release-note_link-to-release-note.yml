@@ -1,6 +1,6 @@
 name: Link to release note
-# We want to have a link in every pr to the generated
-# release note (created in `create-release-note.tml`)
+# We want to have a link in the pr to the generated
+# release note (created in `release-note_upsert-release-note.yml`)
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
   release:
     name: Link to release note
     runs-on: ubuntu-22.04
-    if: github.ref_name == 'develop' || github.ref_name == 'release' || github.ref_name == 'uat'
+    if: github.ref_name == 'develop'
     steps:
       - uses: actions/checkout@v3
         with:

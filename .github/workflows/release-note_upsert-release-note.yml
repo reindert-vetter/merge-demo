@@ -8,7 +8,6 @@ jobs:
   release:
     name: Upsert release note
     runs-on: ubuntu-22.04
-    if: github.ref_name == 'develop' || github.ref_name == 'release' || github.ref_name == 'uat'
     steps:
       - uses: actions/checkout@v3
         with:
