@@ -2,11 +2,12 @@ name: Upsert release note
 # Generate a release note. For example: https://github.com/plug-and-pay/plug-and-pay/releases/tag/pr-4970
 
 on:
-  pull_request:
+  push:
     branches:
       - develop
       - release
       - uat
+  pull_request:
     types: [opened, reopened, synchronize]
 jobs:
   release:
