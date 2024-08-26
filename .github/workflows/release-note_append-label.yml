@@ -1,0 +1,26 @@
+name: Append label release note
+# Generate a release note. For example: https://github.com/plug-and-pay/plug-and-pay/releases/tag/pr-4970
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - develop
+jobs:
+  release:
+    name: Append label release note
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Append label release note
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          LABELS: triage
+        run: gh issue edit "$NUMBER" --add-label "In release note"
