@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Debug
-        run: echo "${{ github.event.pull_request.base.ref }}"
+        run: echo "${{ github.event.pull_request.head.ref }}"
       - name: Upsert release note
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
