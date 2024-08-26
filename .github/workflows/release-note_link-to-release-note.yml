@@ -3,11 +3,12 @@ name: Link to release note
 # release note (created in `create-release-note.tml`)
 
 on:
-  pull_request:
+  push:
     branches:
       - develop
       - release
       - uat
+  pull_request:
     types: [opened]
 jobs:
   release:
