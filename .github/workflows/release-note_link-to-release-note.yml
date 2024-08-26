@@ -6,6 +6,8 @@ on:
   pull_request:
     branches:
       - develop
+      - release
+      - uat
     types: [opened]
 jobs:
   release:

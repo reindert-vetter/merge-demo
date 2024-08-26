@@ -5,6 +5,8 @@ on:
   pull_request:
     branches:
       - develop
+      - release
+      - uat
     types: [opened, reopened, synchronize]
 jobs:
   release:
