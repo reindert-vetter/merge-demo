@@ -8,7 +8,7 @@ jobs:
   release:
     name: Upsert release note
     runs-on: ubuntu-22.04
-    if: contains(fromJson('["refs/heads/develop", "refs/heads/release", "refs/heads/uat"]'), github.ref)
+    if: contains(github.base_ref, 'master')
     steps:
       - uses: actions/checkout@v3
         with:
