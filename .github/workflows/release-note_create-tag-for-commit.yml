@@ -20,4 +20,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "commit-${{ github.sha }}" --latest=false || true
+          git tag "commit-${{ github.sha }}"
+          git push origin
